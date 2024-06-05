@@ -1,0 +1,38 @@
+<!-- Footer Section -->
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container text-center">
+        <span class="text-muted">© 2024 Path Generator</span>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+</script>
+<script>
+    function generateMatrixInputs(idPrefix, colsId, containerId) {
+        const cols = document.getElementById(colsId).value; // Directly setting cols based on rows
+        const rows = cols;
+        const container = document.getElementById(containerId);
+        container.innerHTML = '';
+
+        for (let i = 0; i < rows; i++) {
+            let row = document.createElement('div');
+            for (let j = 0; j < cols; j++) {
+                let input = document.createElement('input');
+                input.type = 'text';
+                input.name = `${idPrefix}_${i}_${j}`;
+                input.required = true;
+                input.classList.add('matrix-input');
+                row.appendChild(input);
+            }
+            container.appendChild(row);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        generateMatrixInputs('matrix', 'rows', 'matrix-container');
+    });
+</script>
+</body>
+
+</html>

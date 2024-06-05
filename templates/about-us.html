@@ -1,0 +1,35 @@
+{% include 'header.html' %}
+
+<section class="container my-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+            <h1 class="display-4 mb-4">About Us</h1>
+            <p class="lead">
+                Welcome to our website! We are the team behind the creation of a generator to find the best routes in
+                determining which gyms to challenge first in the Pokemon Go game.
+                By utilizing backtracking and dynamic programming algorithm strategies, we aim to provide a seamless
+                experience for Pokemon trainers in exploring their virtual world.
+                We not only present solutions but also conduct in-depth analysis to ensure optimal runtime, so users can
+                enjoy the game without lag.
+                Thank you for joining us on your Pokemon Go adventure!
+            </p>
+        </div>
+    </div>
+
+    <div class="row mt-5 justify-content-center">
+        {% for author in authors %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow">
+                <img src="{{ url_for('static', filename=author.src) }}" alt="{{ author.name }}" class="card-img-top">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ author.name }}</h5>
+                    <p class="card-text">{{ author.kelas }}</p>
+                    <p class="card-text">NIM: {{ author.nim }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% include 'footer.html' %}

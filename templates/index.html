@@ -1,0 +1,64 @@
+{% include 'header.html' %}
+
+<!-- Hero Section -->
+<section class="container w-100 h-75">
+    <img class="hero-image w-100 rounded" src="{{ url_for('static', filename='/hero.jpg') }}" alt="Hero Image">
+</section>
+
+<!-- Content Section -->
+<section class="container mt-4 mb-20">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Generate Graph from Adjacency Matrix</h2>
+                    <form action="/generate_graph" method="post">
+                        <div class="mb-3">
+                            <label for="rows" class="form-label">Number of GYM:</label>
+                            <input type="number" id="rows" name="rows" min="1"
+                                onchange="generateMatrixInputs('matrix', 'rows', 'matrix-container')"
+                                class="form-control" required>
+                        </div>
+                        <div id="matrix-container">
+                            <!-- Render matrix inputs here -->
+                        </div>
+                        <button class="btn btn-primary mt-3" type="submit">Generate Graph</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            {% if graph_generated %}
+            <div class="card p-3">
+                <h2 class="card-title">Generated Graph:</h2>
+                <img src="{{ url_for('graph') }}" alt="Graph" class="img-fluid mb-3">
+
+                <div class="route-info">
+                    <h4 class="card-subtitle mb-2">Best Routes by Backtracking</h4>
+                    <span class="card-text">Min Cost: <span class=" text-primary">{{ BT_length }}</span>
+                        </p>
+                        <p class="card-text">Routes: <span class=" text-primary">{{ BT_routes }}</span>
+                        </p>
+                </div>
+                <div class="route-info mt-3">
+                    <h4 class="card-subtitle mb-2">Best Routes by Dynamic Programming</h4>
+                    <span class="card-text">Min Cost: <span class=" text-primary">{{ DP_length }}</span>
+                        </p>
+                        <p class="card-text">Routes: <span class=" text-primary">{{ DP_routes }}</span>
+                        </p>
+                </div>
+            </div>
+            {% elif error %}
+            <div class="card text-white bg-danger mb-20">
+                <div class="card-body">
+                    <h2 class="card-title">Error:</h2>
+                    <p>{{ error }}</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+</section>
+
+{% include 'footer.html' %}
