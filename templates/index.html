@@ -34,10 +34,24 @@
                 <img src="{{ url_for('graph') }}" alt="Graph" class="img-fluid mb-3">
 
                 <div class="route-info">
+                    <h4 class="mt-5 mb-3">Matrix Display</h4>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            {% for row in matrix %}
+                            <tr>
+                                {% for item in row %}
+                                <td>{{ item }}</td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
                     <h4 class="card-subtitle mb-2">Best Routes by Backtracking</h4>
                     <span class="card-text">Min Cost: <span class=" text-primary">{{ BT_length }}</span>
                         </p>
                         <p class="card-text">Routes: <span class=" text-primary">{{ BT_routes }}</span>
+                        </p>
+                        <p class="card-text">Execution Time: <span class=" text-primary">{{ et_bt }}</span>
                         </p>
                 </div>
                 <div class="route-info mt-3">
@@ -45,6 +59,8 @@
                     <span class="card-text">Min Cost: <span class=" text-primary">{{ DP_length }}</span>
                         </p>
                         <p class="card-text">Routes: <span class=" text-primary">{{ DP_routes }}</span>
+                        </p>
+                        <p class="card-text">Execution Time: <span class=" text-primary">{{ et_dp }}</span>
                         </p>
                 </div>
             </div>

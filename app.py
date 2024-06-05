@@ -65,19 +65,21 @@ def generate_graph():
         plt.savefig("static/graph.png")
         plt.close()
 
-        code_to_measure = """
-        BT_length, BT_routes = BT.calculate()
-        """
+        st_bt = time.perf_counter()
         BT = bt.Backtracking(rows, matrix)
         BT_length, BT_routes = BT.calculate()
         temp1 = [node_labels[route] for route in BT_routes]
         BT_routes = " ---> ".join(map(str, temp1))
-        print(f"current: {time.time()}")
+        ct_bt = time.perf_counter()
+        et_bt = round(ct_bt - st_bt, 5)  # Membulatkan ke 5 digit desimal
 
+        st_dp = time.perf_counter()
         DP = dp.DynamicProgramming(matrix)
         DP_length, DP_routes = DP.calculate()
         temp2 = [node_labels[route] for route in DP_routes]
         DP_routes = " ---> ".join(map(str, temp2))
+        ct_dp = time.perf_counter()
+        et_dp = round(ct_dp - st_dp, 5)
 
         return render_template(
             "index.html",
@@ -88,6 +90,9 @@ def generate_graph():
             BT_routes=BT_routes,
             DP_length=DP_length,
             DP_routes=DP_routes,
+            et_bt=et_bt,
+            et_dp=et_dp,
+            matrix=adj_matrix,
         )
     except Exception as e:
         return render_template(
