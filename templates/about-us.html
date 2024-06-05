@@ -20,12 +20,13 @@
     <div class="row mt-5 justify-content-center">
         {% for author in authors %}
         <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow">
-                <img src="{{ url_for('static', filename=author.src) }}" alt="{{ author.name }}" class="card-img-top">
+            <div class="card shadow shadow-lg rounded-5">
+                <img src="{{ url_for('static', filename=author.src) }}" alt="{{ author.name }}"
+                    class="card-img-top img-fluid custom-card-img rounded-top-5">
                 <div class="card-body text-center">
-                    <h5 class="card-title">{{ author.name }}</h5>
-                    <p class="card-text">{{ author.kelas }}</p>
-                    <p class="card-text">NIM: {{ author.nim }}</p>
+                    <h5 class="card-title lead fw-semibold">{{ author.name }}</h5>
+                    <p class="card-text lead">{{ author.kelas }}</p>
+                    <p class="card-text lead">NIM: {{ author.nim }}</p>
                 </div>
             </div>
         </div>
